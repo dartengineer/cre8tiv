@@ -64,8 +64,24 @@ document.querySelectorAll('.r').forEach(function (el) {
 
 function handleSub(e) {
   e.preventDefault();
+
+  const form = e.target;
+  const firstName = form.querySelector('[name="firstName"]').value.trim();
+  const lastName = form.querySelector('[name="lastName"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const projectType = form.querySelector('[name="projectType"]').value.trim();
+  const message = form.querySelector('[name="message"]').value.trim();
+
+  const whatsappNumber = '2349066433499';
+  const text = `Hello, I would like to inquire about a project.\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nProject type: ${projectType}\n\nMessage:\n${message}`;
+  const encodedText = encodeURIComponent(text);
+  const whatsappUrl = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${encodedText}`
+    : `https://wa.me/?text=${encodedText}`;
+
+  window.open(whatsappUrl, '_blank');
   document.getElementById('fok').style.display = 'block';
-  e.target.querySelector('.fsub').style.display = 'none';
+  form.querySelector('.fsub').style.display = 'none';
 }
 
 // ====================================
@@ -153,24 +169,24 @@ const cases = {
 
 function openCase(k) {
   const c = cases[k];
-  
+
   document.getElementById('mcat2').textContent = c.cat;
   document.getElementById('mtitle2').textContent = c.title;
-  
+
   const t = document.getElementById('mthumb');
   t.style.background = c.bg;
   t.innerHTML = '<svg width="120" height="80" viewBox="0 0 120 80" fill="none"><rect x="10" y="10" width="100" height="60" rx="8" fill="rgba(255,255,255,.15)"/><rect x="20" y="22" width="60" height="8" rx="4" fill="rgba(255,255,255,.3)"/><rect x="20" y="36" width="40" height="5" rx="2.5" fill="rgba(255,255,255,.2)"/><circle cx="90" cy="50" r="14" fill="rgba(255,255,255,.2)"/></svg>';
-  
+
   document.getElementById('mmeta').innerHTML =
     '<div class="mmi"><span>Client</span><span>' + c.client + '</span></div>' +
     '<div class="mmi"><span>Year</span><span>' + c.year + '</span></div>' +
     '<div class="mmi"><span>My Role</span><span>' + c.role + '</span></div>' +
     '<div class="mmi"><span>Duration</span><span>' + c.dur + '</span></div>';
-  
+
   document.getElementById('mprob').textContent = c.prob;
   document.getElementById('mproc').textContent = c.proc;
   document.getElementById('mout').textContent = c.out;
-  
+
   document.getElementById('mov').classList.add('open');
   document.getElementById('mp').classList.add('open');
   document.getElementById('mp').scrollTop = 0;
