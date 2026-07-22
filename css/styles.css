@@ -98,6 +98,46 @@ nav {
   border-bottom: 1px solid transparent;
 }
 
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(212, 196, 184, 0.45);
+  border-radius: 50%;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: none;
+  padding: 0;
+}
+
+.nav-toggle span {
+  width: 18px;
+  height: 1.5px;
+  background: var(--dark);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 nav.stuck {
   background: rgba(250, 248, 244, 0.88);
   backdrop-filter: blur(20px);
@@ -163,10 +203,12 @@ nav.stuck {
 #hero {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 52% 48%;
+  align-items: center;
+  gap: 20px;
   position: relative;
   overflow: hidden;
-  padding-top: 68px;
+  padding: 68px 4vw 0;
 }
 
 .orb {
@@ -230,7 +272,9 @@ nav.stuck {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 60px 80px 80px;
+  padding: 80px 30px 80px 40px;
+  max-width: 640px;
+  margin-left: auto;
   position: relative;
   z-index: 2;
 }
@@ -287,7 +331,7 @@ nav.stuck {
   font-size: 0.88rem;
   line-height: 1.95;
   color: var(--mid);
-  max-width: 370px;
+  max-width: 500px;
   margin-bottom: 44px;
   opacity: 0;
   animation: up 0.9s 0.55s forwards;
@@ -353,26 +397,26 @@ nav.stuck {
 .hero-right {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 50px 0;
   position: relative;
   z-index: 2;
-  padding: 100px 80px 80px 0;
   opacity: 0;
   animation: fadeIn 1.4s 0.5s forwards;
 }
 
 .portrait-scene {
   position: relative;
-  width: 320px;
-  height: 460px;
+  width: min(460px, 90vw);
+  height: 620px;
 }
 
 .p-shadow {
   position: absolute;
-  bottom: -16px;
-  left: 24px;
-  right: -24px;
-  top: 24px;
+  bottom: -14px;
+  left: 28px;
+  right: -18px;
+  top: 18px;
   background: var(--lavender);
   border-radius: 200px 200px 130px 130px;
   opacity: 0.45;
@@ -429,13 +473,13 @@ nav.stuck {
 }
 
 .chip-bl {
-  bottom: 50px;
-  left: -50px;
+  bottom: 38px;
+  left: -28px;
 }
 
 .chip-tr {
-  top: 50px;
-  right: -44px;
+  top: 36px;
+  right: -26px;
   flex-direction: column;
   text-align: center;
   gap: 4px;
@@ -545,6 +589,11 @@ nav.stuck {
 
 section {
   padding: 120px 80px;
+}
+
+section[id],
+#hero {
+  scroll-margin-top: 96px;
 }
 
 .sl {
@@ -1311,25 +1360,6 @@ footer {
   letter-spacing: 0.05em;
 }
 
-.fnav {
-  display: flex;
-  gap: 28px;
-}
-
-.fnav a {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(250, 248, 244, 0.4);
-  text-decoration: none;
-  transition: color 0.2s;
-  cursor: none;
-}
-
-.fnav a:hover {
-  color: var(--blush);
-}
-
 /* ====================================
    MODAL
    ==================================== */
@@ -1543,9 +1573,54 @@ footer {
     padding: 0 20px;
   }
 
-  .nav-links,
-  .nav-cta {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
     display: none;
+    position: fixed;
+    top: 68px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px 20px;
+    background: rgba(250, 248, 244, 0.98);
+    border: 1px solid rgba(212, 196, 184, 0.35);
+    border-radius: 18px;
+    box-shadow: 0 20px 55px rgba(26, 22, 20, 0.12);
+    z-index: 220;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.78rem;
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
   }
 
   section {
