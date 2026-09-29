@@ -895,6 +895,15 @@ section[id],
   display: block;
 }
 
+.case-media img {
+  cursor: zoom-in;
+  transition: filter 0.3s;
+}
+
+.case-media img:hover {
+  filter: brightness(0.93);
+}
+
 .case-content {
   padding-top: 12px;
 }
@@ -1377,6 +1386,66 @@ footer {
 }
 
 /* ====================================
+   IMAGE LIGHTBOX
+   ==================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 7, 0.92);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lb-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  transform: scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lightbox.open .lb-img {
+  transform: scale(1);
+}
+
+.lb-close {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(250, 248, 244, 0.3);
+  background: rgba(250, 248, 244, 0.08);
+  color: var(--cream);
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lb-close:hover {
+  background: rgba(250, 248, 244, 0.18);
+  border-color: rgba(250, 248, 244, 0.6);
+}
+
+/* ====================================
    RESPONSIVE DESIGN
    ==================================== */
 
@@ -1527,6 +1596,15 @@ footer {
   .cmeta {
     gap: 20px;
     padding: 16px 18px;
+  }
+
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lb-close {
+    top: 16px;
+    right: 16px;
   }
 
   .sg {

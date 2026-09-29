@@ -25,7 +25,7 @@ document.addEventListener('mousemove', function (e) {
 })();
 
 // Add hover effect to interactive elements
-document.querySelectorAll('a, button, .card, .sc, .tc').forEach(function (el) {
+document.querySelectorAll('a, button, .sc, .tc, .case-media img').forEach(function (el) {
   el.addEventListener('mouseenter', function () {
     document.body.classList.add('hov');
   });
@@ -96,3 +96,32 @@ function showTab(tab) {
     panel.classList.toggle('active', panel.dataset.panel === tab);
   });
 }
+
+// ====================================
+// IMAGE LIGHTBOX
+// ====================================
+
+function openLightbox(src, alt) {
+  const img = document.getElementById('lbImg');
+  img.src = src;
+  img.alt = alt || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.case-media img').forEach(function (img) {
+  img.addEventListener('click', function () {
+    openLightbox(img.src, img.alt);
+  });
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeLightbox();
+  }
+});
