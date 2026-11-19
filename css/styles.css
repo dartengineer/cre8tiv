@@ -818,6 +818,69 @@ section[id],
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 48px;
+  scroll-margin-top: 110px;
+}
+
+/* ---------- "View other projects" footer in each tab ---------- */
+
+.case-more {
+  text-align: center;
+  padding: 56px 24px;
+  border-top: 1px solid var(--sand);
+}
+
+.case-more .sl {
+  justify-content: center;
+}
+
+.case-more-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.case-more-title em {
+  color: var(--rose);
+}
+
+.case-more-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  border: 1.5px solid var(--rose);
+  border-radius: 40px;
+  background: none;
+  color: var(--rose);
+  cursor: none;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.more-btn span {
+  transition: transform 0.3s;
+}
+
+.more-btn:hover {
+  background: var(--rose);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.more-btn:hover span {
+  transform: translateX(4px);
 }
 
 .ptab {

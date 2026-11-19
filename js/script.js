@@ -97,6 +97,12 @@ function showTab(tab) {
   });
 }
 
+// "View other projects" buttons: switch tab, then jump back up to the tabs
+function gotoTab(tab) {
+  showTab(tab);
+  document.getElementById('workTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // ====================================
 // IMAGE LIGHTBOX
 // ====================================
